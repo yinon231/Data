@@ -1,11 +1,17 @@
 const mongoose = require("mongoose");
-const itemSchema = new mongoose.Schema({
-  name: String,
-  amount: Number,
-});
+const donorSchema = new mongoose.Schema(
+  {
+    name: String,
+    email: String,
+  },
+  { _id: false }
+);
 const donationSchema = new mongoose.Schema({
   id: Number,
-  items: [itemSchema],
+  donor: donorSchema,
+  amount: Number,
+  date: Date,
+  status: String,
 });
 
 // Create a model based on the schema

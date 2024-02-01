@@ -1,0 +1,19 @@
+const donationRepository = require("../repository/donationRepository");
+const getDonation = async (req, res) => {
+  try {
+    const donations = await donationRepository.getDonation();
+    res.status(200).send(donations);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+const getDonationbyId = async (req, res) => {
+  try {
+    console.log(req.params.id);
+    const donations = await donationRepository.getDonationbyId(req.params.id);
+    res.status(200).send(donations);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+module.exports = { getDonation, getDonationbyId };

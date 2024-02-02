@@ -1,10 +1,11 @@
 const { donationModel } = require("../models/donationModel");
-const getDonation = async () => {
-  const donations = await donationModel.find({});
-  return donations;
+exports.donationRepository = {
+  getDonation: async () => {
+    const donations = await donationModel.find({});
+    return donations;
+  },
+  getDonationbyId: async (id) => {
+    const donation = await donationModel.find({ id });
+    return donation;
+  },
 };
-const getDonationbyId = async (id) => {
-  const donation = await donationModel.find({ id });
-  return donation;
-};
-module.exports = { getDonation, getDonationbyId };

@@ -1,4 +1,4 @@
-const donationModel = require("../models/donationModel");
+const { donationModel } = require("../models/donationModel");
 exports.donationRepository = {
   getDonation: async () => {
     const donations = await donationModel.find({});
@@ -13,11 +13,7 @@ exports.donationRepository = {
     await newDonation.save();
   },
   updateDonation: async (id, donation) => {
-    const updatedDonation = await donationModel.findOneAndUpdate(
-      { id },
-      donation
-    );
-    return updatedDonation;
+    await donationModel.findOneAndUpdate({ id }, donation);
   },
   deleteDonaotion: async (id) => {
     const deletedDonation = await donationModel.findOneAndDelete({ id });

@@ -1,5 +1,10 @@
 const express = require("express");
 const logger = require("morgan");
+const fs = require("fs");
+const path = require("path");
+const accessLogStream = fs.createWriteStream(path.join(__dirname, "logs.log"), {
+  flags: "a",
+});
 
 const app = express();
 const { donationRouter } = require("./router/donationRouter");
@@ -7,7 +12,11 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(logger("dev")); // app.use(logger("combined"));
+app.use(
+  logger(":method :url :status :res[content-length] - :response-time ms", {
+    stream: accessLogStream,
+  })
+);
 app.use("/donation", donationRouter);
 require("./dbConnection");
 

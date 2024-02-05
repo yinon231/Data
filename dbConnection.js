@@ -9,9 +9,7 @@ const DB_PASS = process.env.DB_PASS;
 const connectionUrl = `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}`;
 mongoose
   .connect(connectionUrl)
-  // eslint-disable-next-line no-console
   .then(() => console.log(`connected to database`))
-  // eslint-disable-next-line no-console
   .catch((err) => console.log(`connection error: ${err}`));
 
 module.exports = mongoose;

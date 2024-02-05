@@ -15,5 +15,5 @@ app.listen(port, () =>
   console.log(`Express server is running on port ${port}`)
 );
 app.use((req, res) => {
-  res.status(400).send("Something is broken!");
+  res.status(404).send("not found!");
 });

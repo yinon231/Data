@@ -16,4 +16,4 @@ const donationSchema = new mongoose.Schema({
 
 // Create a model based on the schema
 const donationModel = mongoose.model("donations", donationSchema);
-exports.donationModel = donationModel;
+module.exports = donationModel;

@@ -16,6 +16,8 @@ exports.donationController = {
   },
   getDonationbyId: async (req, res) => {
     try {
+      if (isNaN(req.params.id))
+        return res.status(400).json({ message: "Invalid id" });
       const donation = await donationRepository.getDonationbyId(req.params.id);
       if (donation.length > 0) {
         res.status(200).send(donation);
@@ -39,18 +41,25 @@ exports.donationController = {
   },
   updateDonation: async (req, res) => {
     try {
-      let validBody = validateDonationUpdate(req.body);
+      const validBody = validateDonationUpdate(req.body);
       if (validBody.error) {
         return res.status(400).send(validBody.error.details);
       }
-      await donationRepository.updateDonation(req.params.id, req.body);
-      res.status(200).json({ message: "Donation updated successfully" });
+      const updateDonation = await donationRepository.updateDonation(
+        req.params.id,
+        req.body
+      );
+      if (updateDonation) {
+        res.status(200).json({ message: "Donation updated successfully" });
+      } else res.status(404).json({ message: "Donation not found" });
     } catch (error) {
       res.status(500).send(error);
     }
   },
   deleteDonaotion: async (req, res) => {
     try {
+      if (isNaN(req.params.id))
+        return res.status(400).json({ message: "Invalid id" });
       const donation = await donationRepository.deleteDonaotion(req.params.id);
       if (donation) {
         res.status(200).json({ message: "Donation deleted successfully" });

@@ -13,7 +13,11 @@ exports.donationRepository = {
     await newDonation.save();
   },
   updateDonation: async (id, donation) => {
-    await donationModel.findOneAndUpdate({ id }, donation);
+    const updateDonation = await donationModel.findOneAndUpdate(
+      { id },
+      donation
+    );
+    return updateDonation;
   },
   deleteDonaotion: async (id) => {
     const deletedDonation = await donationModel.findOneAndDelete({ id });

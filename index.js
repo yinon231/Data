@@ -7,9 +7,9 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, "logs.log"), {
 });
 
 const app = express();
+module.exports = app;
 const { donationRouter } = require("./router/donationRouter");
 const port = process.env.PORT || 3000;
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
@@ -17,12 +17,12 @@ app.use(
     stream: accessLogStream,
   })
 );
-app.use("/donation", donationRouter);
+app.use("/api/donations", donationRouter);
 require("./dbConnection");
 
 app.listen(port, () =>
   console.log(`Express server is running on port ${port}`)
 );
 app.use((req, res) => {
-  res.status(404).send("route not found!");
+  res.status(404).json({ message: "route not found!" });
 });

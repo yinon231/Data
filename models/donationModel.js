@@ -22,7 +22,7 @@ const validateDonation = (donation) => {
     donor: Joi.object({
       name: Joi.string().required(),
       email: Joi.string().required(),
-    }),
+    }).required(),
     amount: Joi.number().required(),
     date: Joi.string().required(),
     status: Joi.string().required(),

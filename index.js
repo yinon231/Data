@@ -20,9 +20,10 @@ app.use(
 app.use("/api/donations", donationRouter);
 require("./dbConnection");
 
-app.listen(port, () =>
-  console.log(`Express server is running on port ${port}`)
-);
 app.use((req, res) => {
   res.status(404).json({ message: "route not found!" });
 });
+
+app.listen(port, () =>
+  console.log(`Express server is running on port ${port}`)
+);

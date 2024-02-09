@@ -2,7 +2,7 @@ const request = require("supertest");
 const app = require("../index");
 const { donationRepository } = require("../repository/donationRepository");
 jest.mock("../repository/donationRepository");
-describe("GET /donations", () => {
+describe("GET /api/donations", () => {
   beforeAll(async () => {
     jest.clearAllMocks();
   });
@@ -50,7 +50,7 @@ describe("GET /donations", () => {
     expect(res.status).toEqual(500);
   });
 });
-describe("GET /donations/:id", () => {
+describe("GET /api/donations/:id", () => {
   beforeAll(async () => {
     jest.clearAllMocks();
   });
@@ -93,7 +93,7 @@ describe("GET /donations/:id", () => {
     expect(res.status).toEqual(500);
   });
 });
-describe("POST /donations", () => {
+describe("POST /api/donations", () => {
   beforeAll(async () => {
     jest.clearAllMocks();
   });
@@ -176,7 +176,7 @@ describe("POST /donations", () => {
     expect(res.status).toEqual(500);
   });
 });
-describe("PUT /donations/:id", () => {
+describe("PUT /api/donations/:id", () => {
   beforeAll(async () => {
     jest.clearAllMocks();
   });
@@ -252,7 +252,7 @@ describe("PUT /donations/:id", () => {
     expect(res.status).toEqual(500);
   });
 });
-describe("DELETE /donations/:id", () => {
+describe("DELETE /api/donations/:id", () => {
   beforeAll(async () => {
     jest.clearAllMocks();
   });

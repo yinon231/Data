@@ -5,7 +5,7 @@ const path = require("path");
 const accessLogStream = fs.createWriteStream(path.join(__dirname, "logs.log"), {
   flags: "a",
 });
-
+require("./dbConnection");
 const app = express();
 module.exports = app;
 const { donationRouter } = require("./router/donationRouter");
@@ -18,7 +18,6 @@ app.use(
   })
 );
 app.use("/api/donations", donationRouter);
-require("./dbConnection");
 
 app.use((req, res) => {
   res.status(404).json({ message: "route not found!" });

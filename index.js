@@ -1,5 +1,6 @@
 const express = require("express");
 const logger = require("morgan");
+const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
 require("./dbConnection");
@@ -23,7 +24,11 @@ app.use("/api/donations", donationRouter);
 app.use((req, res) => {
   res.status(404).json({ message: "route not found!" });
 });
-
+app.use(
+  cors({
+    origin: "http://onrender.com",
+  })
+);
 app.listen(port, () =>
   console.log(`Express server is running on port ${port}`)
 );

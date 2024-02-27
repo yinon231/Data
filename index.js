@@ -26,7 +26,11 @@ app.use((req, res) => {
 });
 app.use(
   cors({
-    origin: "http://onrender.com",
+    origin: "http://render.com",
+    allowedHeaders: [
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept",
+    ],
   })
 );
 app.listen(port, () =>

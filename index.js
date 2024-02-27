@@ -2,13 +2,14 @@ const express = require("express");
 const logger = require("morgan");
 const fs = require("fs");
 const path = require("path");
+require("./dbConnection");
+const { donationRouter } = require("./router/donationRouter");
 const accessLogStream = fs.createWriteStream(path.join(__dirname, "logs.log"), {
   flags: "a",
 });
-require("./dbConnection");
+
 const app = express();
 module.exports = app;
-const { donationRouter } = require("./router/donationRouter");
 const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

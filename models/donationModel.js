@@ -8,7 +8,6 @@ const donorSchema = new mongoose.Schema(
   { _id: false }
 );
 const donationSchema = new mongoose.Schema({
-  id: Number,
   donor: donorSchema,
   amount: Number,
   date: String,
@@ -18,7 +17,6 @@ const donationSchema = new mongoose.Schema({
 const donationModel = mongoose.model("donations", donationSchema);
 const validateDonation = (donation) => {
   const schema = Joi.object({
-    id: Joi.number().required(),
     donor: Joi.object({
       name: Joi.string().required(),
       email: Joi.string().required(),

@@ -11,6 +11,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, "logs.log"), {
 
 const app = express();
 module.exports = app;
+app.use(cors());
 const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,7 +25,6 @@ app.use("/api/donations", donationRouter);
 app.use((req, res) => {
   res.status(404).json({ message: "route not found!" });
 });
-app.use(cors());
 app.listen(port, () =>
   console.log(`Express server is running on port ${port}`)
 );

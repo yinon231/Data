@@ -11,7 +11,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, "logs.log"), {
 
 const app = express();
 module.exports = app;
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors());
 const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

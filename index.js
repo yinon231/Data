@@ -24,15 +24,7 @@ app.use("/api/donations", donationRouter);
 app.use((req, res) => {
   res.status(404).json({ message: "route not found!" });
 });
-app.use(
-  cors({
-    origin: "http://render.com",
-    allowedHeaders: [
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept",
-    ],
-  })
-);
+app.use(cors());
 app.listen(port, () =>
   console.log(`Express server is running on port ${port}`)
 );

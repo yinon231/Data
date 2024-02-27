@@ -11,7 +11,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, "logs.log"), {
 
 const app = express();
 module.exports = app;
-app.use(cors());
+app.use(cors({ origin: "http://onrender.com" }));
 const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -30,8 +30,8 @@ const validateDonation = (donation) => {
 const validateDonationUpdate = (donation) => {
   const updateSchema = Joi.object({
     donor: Joi.object({
-      name: Joi.string(),
-      email: Joi.string(),
+      name: Joi.string().required(),
+      email: Joi.string().required(),
     }),
     amount: Joi.number(),
     date: Joi.string(),
